@@ -22,6 +22,14 @@ int main() {
     tree->print();
     tree->addItem(5);
     tree->print();
+    tree->addItem(8);
+    tree->print();
+    tree->deleteItem(2);
+    tree->print();
+    tree->deleteItem(7);
+    tree->print();
+    tree->deleteItem(8);
+    tree->print();
     //tree->print();
     /*tree->addItem(1);
     /*tree->addItem(8);

@@ -119,17 +119,20 @@ void Tree::_deleteItem(Node *root, Node *parent, int *data, int *result, bool *i
         if(root->left() == nullptr && root->right() == nullptr && parent->left() == root) {
             delete root;
             parent->left(nullptr);
+            _reBalance(_root);
             return;
         }
         if(root->left() == nullptr && root->right() == nullptr && parent->right() == root) {
             delete root;
             parent->right(nullptr);
+            _reBalance(_root);
             return;
         }
         if(*isLeftSubtree) {
             if(root->right() == nullptr) {
                 parent->left(root->left());
                 delete root;
+                _reBalance(_root);
                 return;
             }
             Node *theRightest = root;
@@ -141,11 +144,13 @@ void Tree::_deleteItem(Node *root, Node *parent, int *data, int *result, bool *i
             root->data(theRightest->data());
             delete theRightest;
             theRightestParent->right(nullptr);
+            _reBalance(_root);
             return;
         } else {
             if(root->left() == nullptr) {
                 parent->right(root->right());
                 delete root;
+                _reBalance(_root);
                 return;
             }
             Node *theLeft = root;
@@ -157,6 +162,7 @@ void Tree::_deleteItem(Node *root, Node *parent, int *data, int *result, bool *i
             root->data(theLeft->data());
             delete theLeft;
             theLeftParent->left(nullptr);
+            _reBalance(_root);
             return;
         }
     }
