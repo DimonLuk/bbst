@@ -8,7 +8,7 @@ using namespace std;
 int main() {
     Tree *tree = new Tree();
     //tree->addItem(7);
-    tree->addItem(1);
+    /*tree->addItem(1);
     tree->print();
     tree->addItem(2);
     tree->print();
@@ -37,19 +37,20 @@ int main() {
     tree->addItem(14);
     tree->print();
     tree->addItem(15);
-    tree->print();
-    /*tree->deleteItem(2);
-    tree->print();
-    tree->deleteItem(7);
-    tree->print();
-    tree->deleteItem(8);
     tree->print();*/
-    //tree->print();
-    /*tree->addItem(1);
-    /*tree->addItem(8);
-    tree->addItem(9);
-    tree->addItem(10);*/
-    //tree->deleteItem(1);
-    //tree->print();
+    tree->addItem(1);
+    tree->addItem(2);
+    tree->addItem(3);
+    tree->addItem(4);
+    tree->addItem(5);
+    tree->addItem(6);
+    tree->addItem(7);
+    tree->print();
+
+    Tree *anotherTree =  new Tree();
+    anotherTree->addItem(8);
+    anotherTree->addItem(9);
+    anotherTree->print();
+    cout <<  tree->contains(anotherTree);
     return 0;
 }

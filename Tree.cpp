@@ -219,7 +219,7 @@ void Tree::_reBalance(Node *root) {
      /*print();
      cout << balanceFactor << "\t" << root->data() << "\n";*/
      if(balanceFactor <= -2) {
-         if(root->right()->left() == nullptr) { //Right-left rotation
+         if(root->right()->left() == nullptr) { //Left rotation
             int tmp = root->data();
             Node *tmpN = root->left();
             root->data(root->right()->data());
@@ -230,9 +230,9 @@ void Tree::_reBalance(Node *root) {
             tmpN = root->right();
             root->right(root->right()->right());
             delete tmpN;
-            _reBalance(root);
+            _reBalance(root);//Balance until we don't have perfect balance
             return;
-        } else if(root->right()->left() != nullptr){
+        } else if(root->right()->left() != nullptr){//Right-left rotation
             int tmp = root->data();
             Node *tmpN = root->left();
             Node *theLeft = root->right()->left();
@@ -253,7 +253,7 @@ void Tree::_reBalance(Node *root) {
         }
      }
      if(balanceFactor >= 2) {
-        if(root->left()->right() == nullptr) { //Right-left rotation
+        if(root->left()->right() == nullptr) { //Right rotation
             int tmp = root->data();
             Node *tmpN = root->right();
             root->data(root->left()->data());
@@ -266,7 +266,7 @@ void Tree::_reBalance(Node *root) {
             delete tmpN;
             _reBalance(root);
             return;
-        } else if(root->left()->right() != nullptr){
+        } else if(root->left()->right() != nullptr){//Left-right rotation
             int tmp = root->data();
             Node *tmpN = root->right();
             Node *theLeft = root->left()->right();
@@ -306,4 +306,39 @@ int Tree::_height(Node *root) const {
 int Tree::_childCount(Node *root) const {
     if(root == nullptr) return 0;
     return 1 + _childCount(root->left()) + _childCount(root->right());
+}
+
+Node* Tree::root() const {
+    return _root;
+}
+
+bool Tree::contains(Tree *tree) const {
+    bool flag = true;
+    _contains(_root, tree->root(), &flag);
+    return flag;
+}
+
+void Tree::_contains(Node *root, Node *anotherRoot, bool *flag) const {
+    if(!*flag)
+        return;
+    if(root == nullptr && anotherRoot == nullptr) return;
+    if(root == nullptr || anotherRoot == nullptr) {
+        *flag = false;
+        return;
+    }
+    if(anotherRoot->data() < root->data()) {
+        _contains(root->left(), anotherRoot, flag);
+        return;
+    }
+    if(anotherRoot->data() > root->data()) {
+        _contains(root->right(), anotherRoot, flag);
+        return;
+    }
+    if(anotherRoot->data() == root->data()) {
+        if(anotherRoot->left() != nullptr)
+            _contains(_root, anotherRoot->left(), flag);
+        if(anotherRoot->right() != nullptr)
+            _contains(_root, anotherRoot->right(), flag);
+        return;
+    }
 }

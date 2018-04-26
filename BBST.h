@@ -32,6 +32,7 @@ class Tree {
         int _height(Node *root) const;
         void _reBalance(Node *root);
         int _childCount(Node *root) const;
+        void _contains(Node *root, Node *anotherRoot, bool *flag) const;
     public:
         bool isEmpty() const;
         bool isFull() const;
@@ -43,7 +44,7 @@ class Tree {
         bool addItem(int item);
         int height() const;
         bool contains(Tree *tree) const;
-        Tree root() const;
+        Node* root() const;
         Tree();
         ~Tree();
 
