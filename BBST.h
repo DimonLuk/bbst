@@ -43,6 +43,7 @@ class Tree {
         bool addItem(int item);
         int height() const;
         bool contains(Tree *tree) const;
+        Tree root() const;
         Tree();
         ~Tree();
 
