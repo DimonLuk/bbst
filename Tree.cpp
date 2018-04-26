@@ -206,30 +206,6 @@ void Tree::_retreive(Node *root, int *data, int *result) const {
     }
 }
 
-/*bool Tree::isBalanced() const {
-    if(isEmpty()) {
-        cout << "Tree is empty" << endl;
-        return true;
-    }
-    return _isBalanced_rec(_root);
-}*/
-
-bool Tree::_isBalanced_rec(Node *root) const {
-    int leftHeight;
-    int rightHeight; 
-    if(root == nullptr)
-        return true; 
-    
-    leftHeight = _height(root->left());
-    rightHeight = _height(root->right());
-
-    cout << leftHeight - rightHeight << "\n";
- 
-    if( abs(leftHeight - rightHeight) < 2 && _isBalanced_rec(root->left()) && _isBalanced_rec(root->right()))
-            return true;
-    return false;
-}
-
 void Tree::_reBalance(Node *root) {
     if(root == nullptr) return;
     _reBalance(root->left());
@@ -329,5 +305,5 @@ int Tree::_height(Node *root) const {
 
 int Tree::_childCount(Node *root) const {
     if(root == nullptr) return 0;
-    return 1 + _height(root->left()) + _height(root->right());
+    return 1 + _childCount(root->left()) + _childCount(root->right());
 }

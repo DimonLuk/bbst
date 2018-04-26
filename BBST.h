@@ -30,7 +30,6 @@ class Tree {
         void _makeEmpty(Node *root, Node *parent);
         void _retreive(Node *root, int *data, int *result) const;
         int _height(Node *root) const;
-        bool _isBalanced_rec(Node *root) const;
         void _reBalance(Node *root);
         int _childCount(Node *root) const;
     public:
@@ -43,7 +42,7 @@ class Tree {
         int deleteItem(int item);
         bool addItem(int item);
         int height() const;
-        bool isBalanced() const;
+        bool contains(Tree *tree) const;
         Tree();
         ~Tree();
 
